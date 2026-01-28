@@ -10,4 +10,14 @@ public class Saab95 extends Car {
         modelName = "Saab95";
         stopEngine();
     }
+
+    @Override
+    public void incrementSpeed(double amount) {
+        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+    }
+
+    @Override
+    public void decrementSpeed(double amount) {
+        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+    }
 }
