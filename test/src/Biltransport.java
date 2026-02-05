@@ -5,10 +5,10 @@ public class Biltransport extends Car {
 
     private boolean rampOpened;
     private ArrayList<Car> carsStorage;
-    private final int flakCapacity = 3;
+    private final int flakCapacity;
 
     public Biltransport(int flakCapacity) {
-
+        this.flakCapacity = flakCapacity;
         rampOpened = false;
     }
 
@@ -48,5 +48,21 @@ public class Biltransport extends Car {
         }
     }
 
+    @Override
+    public void move()  {
+        super.move();
+        for (Car car: carsStorage) {
+            car.xCoord = this.xCoord;
+            car.yCoord = this.yCoord;
+        }
+    }
 
+
+    public boolean getRampOpened() {
+        return rampOpened;
+    }
+
+    public ArrayList<Car> getCarsStorage() {
+        return carsStorage;
+    }
 }
