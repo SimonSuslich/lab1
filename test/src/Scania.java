@@ -1,4 +1,4 @@
-public class Scania extends Car {
+public class Scania extends BigCar implements HasAngle {
 
     private int flakAngle;
 
@@ -8,7 +8,7 @@ public class Scania extends Car {
 
 
 
-    public void changeFlakAngle(int deltaAngle) {
+    public void changeAngle(int deltaAngle) {
         if(getCurrentSpeed() > 0){
             return;
         }
@@ -22,7 +22,7 @@ public class Scania extends Car {
         }
     }
 
-    public int getFlakAngle() {
+    public int getAngle() {
         return flakAngle;
     }
 

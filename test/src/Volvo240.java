@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Volvo240 extends Car{
+public class Volvo240 extends Car {
     private double trimFactor;
 
     public Volvo240(){

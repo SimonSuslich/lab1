@@ -63,26 +63,26 @@ class CarTest {
 
     @Test
     void flakAngleNotOver70() {
-        scania.changeFlakAngle(71);
-        assertEquals(70, scania.getFlakAngle());
+        scania.changeAngle(71);
+        assertEquals(70, scania.getAngle());
     }
 
 
     @Test
     void flakAngleNotNegative() {
-        scania.changeFlakAngle(-10);
-        assertEquals(0, scania.getFlakAngle());
+        scania.changeAngle(-10);
+        assertEquals(0, scania.getAngle());
     }
 
     @Test
     void flakAngleChange() {
-        scania.changeFlakAngle(40);
-        assertEquals(40, scania.getFlakAngle());
+        scania.changeAngle(40);
+        assertEquals(40, scania.getAngle());
     }
 
     @Test
     void notDrivingFlakAngleOver0() {
-        scania.changeFlakAngle(70);
+        scania.changeAngle(70);
         double v0 = scania.getCurrentSpeed();
         scania.incrementSpeed(1);
         double v1 = scania.getCurrentSpeed();
@@ -91,7 +91,7 @@ class CarTest {
 
     @Test
     void notStartingEngineFlakAngle() {
-        scania.changeFlakAngle(10);
+        scania.changeAngle(10);
         scania.startEngine();
         assertEquals(0, scania.getCurrentSpeed());
     }
@@ -100,11 +100,11 @@ class CarTest {
 
     @Test
     void useRamp() {
-        assertFalse(biltransport.getRampOpened());
-        biltransport.openOrCloseRamp();
-        assertTrue(biltransport.getRampOpened());
-        biltransport.openOrCloseRamp();
-        assertFalse(biltransport.getRampOpened());
+        assertEquals(0, biltransport.getAngle());
+        biltransport.changeAngle(1);
+        assertEquals(1, biltransport.getAngle());
+        biltransport.changeAngle(-1);
+        assertEquals(0,biltransport.getAngle());
     }
 
 
@@ -112,7 +112,6 @@ class CarTest {
     void loadsOnlyMaxCapacity() {
         ArrayList<Car> cars = new ArrayList<Car>();
         for (int i = 0; i < 4; i++) cars.add(new Car());
-        biltransport.openOrCloseRamp();
         for (Car car: cars) biltransport.loadCar(car);
         assertEquals(3, biltransport.getCarsStorage().size());
     }
@@ -122,22 +121,22 @@ class CarTest {
     void cannotLoadBiltransport() {
         Biltransport bt1 = new Biltransport(1);
         Biltransport bt2 = new Biltransport(1);
-        bt1.openOrCloseRamp();
+        Scania scania = new Scania();
         bt1.loadCar(bt2);
+        assertEquals(0, bt1.getCarsStorage().size());
+        bt1.loadCar(scania);
         assertEquals(0, bt1.getCarsStorage().size());
     }
 
 
     @Test
     void notFlakWithNegativeCars() {
-        biltransport.openOrCloseRamp();
         biltransport.offLoadCar();
         assertEquals(0, biltransport.getCarsStorage().size());
     }
 
     @Test
     void offLoadCars() {
-        biltransport.openOrCloseRamp();
         for (int i=0; i<2; i++) biltransport.loadCar(new Volvo240());
         Volvo240 car3 = new Volvo240();
         biltransport.loadCar(car3);
@@ -151,9 +150,8 @@ class CarTest {
     @Test
     void btAndCarsSameCoords() {
         Car car = new Car();
-        biltransport.openOrCloseRamp();
         biltransport.loadCar(car);
-        biltransport.openOrCloseRamp();
+        biltransport.changeAngle(1);
         biltransport.startEngine();
         biltransport.gas(1);
         biltransport.turnRight();

@@ -2,8 +2,7 @@ import java.util.ArrayList;
 
 public class AutoShop<CarBrand extends Car> {
     private final int workShopCapacity;
-    private ArrayList<CarBrand> carsStorage = new ArrayList<>();
-
+    private ArrayList<CarBrand> carsStorage = new ArrayList<CarBrand>();
     public AutoShop(int workShopCapacity) {
         this.workShopCapacity = workShopCapacity;
     }
@@ -12,12 +11,16 @@ public class AutoShop<CarBrand extends Car> {
         if (carsStorage.size() < workShopCapacity) carsStorage.add(car);
     }
 
-    public Car offLoadCar() {
+    public Car offLoadCar(Car car) {
         if (!carsStorage.isEmpty()) {
-            CarBrand repairedCar = carsStorage.getLast();
-            carsStorage.removeLast();
+            int index = carsStorage.indexOf(car);
+            if (index == -1) {
+                throw new IndexOutOfBoundsException("Car is not in Autoshop");
+            }
+            Car repairedCar = carsStorage.get(index);
+            carsStorage.remove(car);
             return repairedCar;
         }
-        return null;
+        throw new IllegalArgumentException("Workshop is empty");
     }
 }
