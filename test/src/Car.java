@@ -125,4 +125,12 @@ public class Car implements Movable {
     public void turnRight() {
         carAngle = (carAngle - 10)%360;
     }
+
+    public double getxCoord() {
+        return xCoord;
+    }
+
+    public double getyCoord() {
+        return yCoord;
+    }
 }
