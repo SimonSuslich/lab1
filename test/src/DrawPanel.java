@@ -13,7 +13,6 @@ public class DrawPanel extends JPanel{
     Point volvoWorkshopPoint = new Point(300,300);
 
     ArrayList<Car> cars;
-    AutoShop<Volvo240> autoShop;
 
     // TODO: Make this general for all cars
 
@@ -42,8 +41,6 @@ public class DrawPanel extends JPanel{
             car.setCoord(0, yCoord);
             yCoord += 100;
         }
-        this.autoShop = autoShop;
-
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself

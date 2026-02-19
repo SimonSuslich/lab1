@@ -41,14 +41,9 @@ public class CarView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
 
-    AutoShop<Volvo240> autoShop;
     // Constructor
     public CarView(String framename, CarController cc, ArrayList<Car> cars, AutoShop<Volvo240> autoShop){
         drawPanel = new DrawPanel(X, Y-240, cars, autoShop);
-        this.autoShop = autoShop;
-        System.out.println(this.autoShop);
-
-        System.out.println(autoShop);
         this.carC = cc;
         initComponents(framename);
     }
