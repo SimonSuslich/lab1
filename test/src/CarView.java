@@ -42,8 +42,8 @@ public class CarView extends JFrame{
 
 
     // Constructor
-    public CarView(String framename, CarController cc, ArrayList<Car> cars, AutoShop<Volvo240> autoShop){
-        drawPanel = new DrawPanel(X, Y-240, cars, autoShop);
+    public CarView(String framename, CarController cc, ArrayList<Car> cars){
+        drawPanel = new DrawPanel(X, Y-240, cars);
         this.carC = cc;
         initComponents(framename);
     }

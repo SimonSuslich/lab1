@@ -40,7 +40,7 @@ public class CarController {
         cc.cars.add(new Scania());
         System.out.println(volvo240AutoShop);
         // Start a new view and send a reference of self
-        cc.frame = new CarView("CarSim 1.0", cc, cc.cars, volvo240AutoShop);
+        cc.frame = new CarView("CarSim 1.0", cc, cc.cars);
 
         // Start the timer
         cc.timer.start();
